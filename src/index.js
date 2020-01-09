@@ -1,29 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import counterApp from './store/reducers/reducers';
+import Store from './store/store';
 import App from './components/app';
 import './reset.css';
+import './index.css';
 
-const middleware = [ thunk ];
 
-const store = createStore(
-    counterApp,
-    applyMiddleware(...middleware)
-)
 
 const appRoot = document.getElementById('root');
 
+// 화면 배경색
+appRoot.style.backgroundColor = '#eff3fa';
+// appRoot.style.height = '100%';
+// appRoot.style.minHeight = '100%';
+
 const render = () => {
     ReactDOM.render(
-        <Provider store={store}>
+        <Provider store={Store}>
             <App />
         </Provider>,
         appRoot
     );
 }
 
-store.subscribe(render);
+Store.subscribe(render);
 render();

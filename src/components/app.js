@@ -1,37 +1,64 @@
 import React from 'react';
+import ResultBox from './resultbox/resultbox';
 import { connect } from 'react-redux';
-import { increment, decrement, setDiff } from '../store/actions/actions';
+import { getStartDate } from '../store/actions/actions';
 import styles from './app.css';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            diff: '1'
-        }
     }
 
-    onChangeDiff(e) {
-
-        if(isNaN(e.target.value))
-            return;
-
-        this.setState({ diff: e.target.value });
-
-        if(e.target.value=='') {
-            this.setState({ diff: '0' });
-        }
-
-        this.props.onUpdateDiff(parseInt(e.target.value));
+    componentDidMount() {
+        this.props.getStartDate();
     }
 
     render() {
         return (
-            <div>
-                <button onClick={() => this.props.onIncrement()}>+</button>
-                <button onClick={() => this.props.onDecrement()}>-</button>
-                <input type="text" value={ this.state.diff } onChange={(e) => this.onChangeDiff(e)}></input>
-                <p>{this.props.value}</p>
+            <div className={styles.wrap}>
+                <ResultBox
+                    title='PowerBall'
+                    // 결과 colum의 사이즈 설정을 위한 props
+                    colSpan={3}
+                    startDate={this.props.startDate.pb}
+                    apiKey='powerBall'
+                    tableHead={['일반볼', '파워볼']}
+                />
+                <ResultBox
+                    title='World Betting 5'
+                    colSpan={3}
+                    startDate={this.props.startDate.wb5}
+                    apiKey='worldBall5'
+                    tableHead={['일반볼', '파워볼']}
+                />
+                <ResultBox
+                    title='World Betting 3'
+                    colSpan={3}
+                    startDate={this.props.startDate.wb3}
+                    apiKey='worldBall3'
+                    tableHead={['일반볼', '파워볼']}
+                />
+                <ResultBox
+                    title='Zombie Drop'
+                    colSpan={3}
+                    startDate={this.props.startDate.zd}
+                    apiKey='zombieDrop'
+                    tableHead={['일반볼', '좀비볼']}
+                />
+                <ResultBox
+                    title='Zombie Break'
+                    colSpan={2}
+                    startDate={this.props.startDate.zb}
+                    apiKey='zombieBreak'
+                    tableHead={['왼쪽', '오른쪽']}
+                />
+                <ResultBox
+                    title='RSP'
+                    colSpan={2}
+                    startDate={this.props.startDate.rps}
+                    apiKey='rps'
+                    tableHead={['왼쪽', '오른쪽']}
+                />
             </div>
         );
     }
@@ -39,18 +66,17 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        value: state.counter.value
+        startDate: state.asyncData.startDate
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onIncrement: () => dispatch(increment()),
-        onDecrement: () => dispatch(decrement()),
-        onUpdateDiff: (value) => dispatch(setDiff(value))
+        getStartDate: () => dispatch(getStartDate())
     };
 }
 
 App = connect(mapStateToProps, mapDispatchToProps)(App);
+
 
 export default App;

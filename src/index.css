@@ -1,0 +1,11 @@
+html, body {
+    min-height: 100%;
+    height: 100%;
+    font-size: 10px;
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #eff3fa;
+}
+
+* {
+    box-sizing: border-box;
+}

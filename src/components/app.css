@@ -1,3 +1,13 @@
-.root {
-    color: blue;
+.wrap {
+    display: grid;
+    padding: 30px;
+    min-height: 100%;
+    grid-template-columns: repeat(6, 1fr);
+    column-gap: 20px;
 }
+
+/* @media screen and (max-width: 1366px) {
+    html, body {
+        font-size: 9px;
+    }
+} */
