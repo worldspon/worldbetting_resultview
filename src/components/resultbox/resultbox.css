@@ -5,6 +5,51 @@
     background-color: white;
 }
 
+/* GRID 위치 설정 */
+.gridColOneRowOne {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+
+.gridColTwoRowOne {
+    -ms-grid-column: 3;
+    grid-column: 2;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+
+.gridColThreeRowOne {
+    -ms-grid-column: 5;
+    grid-column: 3;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+
+.gridColFourRowOne {
+    -ms-grid-column: 7;
+    grid-column: 4;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+
+.gridColFiveRowOne {
+    -ms-grid-column: 9;
+    grid-column: 5;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+
+.gridColSixRowOne {
+    -ms-grid-column: 11;
+    grid-column: 6;
+    -ms-grid-row: 1;
+    grid-row: 1;
+}
+/* GRID 위치 설정 */
+
+/* 제목 부분 START */
 .headLineWrap {
     display: flex;
     justify-content: space-between;
@@ -21,22 +66,28 @@
     font-size: 1.2rem;
 }
 
+/*  */
 .listSeachWrap {
     display: flex;
-    flex-flow: column;
 }
 
-.listSearchButton {
+.moreListButton {
+    margin-right: 5px;
+}
+
+.listSeachWrap > button {
     box-sizing: border-box;
     color: #fff;
     font-size: 1.2rem;
-    background: #636363;
+    background-color: #636363;
     padding: 8px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
+/* 제목 부분 END */
 
+/* TABLE START */
 .resultTable {
     table-layout: fixed;
     width: 100%;
@@ -45,6 +96,7 @@
     border-top: 1px solid #aaa;
 }
 
+/* 회차 제목 부분 */
 .tableCountHead {
     font-size: 1.3rem;
     font-weight: bold;
@@ -53,19 +105,23 @@
     vertical-align: middle;
 }
 
+/* 결과 제목 부분 */
 .tableResultHead {
     font-size: 1.3rem;
     font-weight: bold;
-    padding: 5px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #aaa;
     vertical-align: middle;
+    background-color: #f7f7f7;
 }
 
+/* 결과 세부 항목 제목 부분 */
 .tableResultSubHead {
     font-size: 1.3rem;
     font-weight: bold;
-    padding: 5px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #aaa;
+    background-color: #f7f7f7;
     vertical-align: middle;
 }
 
@@ -73,14 +129,176 @@
     border-right: 1px solid #aaa;
 }
 
+/* 테이블 내부 패딩 */
+.tableRows > td {
+    padding: 15px 0;
+}
+
+/* 테이블 내부 선 */
+.tableRows > td:first-of-type {
+    border-right: 1px solid #aaa;
+}
+.tableRows > td:last-of-type {
+    border-left: 1px solid #e8e8e8;
+}
+
+.tableRows:not(:last-of-type) > td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* 회차 내용 부분 색 및 선 */
+.rowCount {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+/* 일반볼 부분 내용 정렬 */
 .tableDataJustifyBetween {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
 }
 
+/* 일반볼 부분 크기 맞춤 */
 .lotteryDataSpan {
     width: 100%;
     text-align: center;
+}
+
+@media screen and (max-width : 1600px) {
+    /* GRID 위치 설정 */
+    .gridColOneRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColTwoRowOne {
+        -ms-grid-column: 3;
+        grid-column: 2;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColThreeRowOne {
+        -ms-grid-column: 5;
+        grid-column: 3;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColFourRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+
+    .gridColFiveRowOne {
+        -ms-grid-column: 3;
+        grid-column: 2;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+
+    .gridColSixRowOne {
+        -ms-grid-column: 5;
+        grid-column: 3;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+    /* GRID 위치 설정 */
+}
+
+@media screen and (max-width : 1080px) {
+    /* GRID 위치 설정 */
+    .gridColOneRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColTwoRowOne {
+        -ms-grid-column: 3;
+        grid-column: 2;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColThreeRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+
+    .gridColFourRowOne {
+        -ms-grid-column: 3;
+        grid-column: 2;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+
+    .gridColFiveRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 5;
+        grid-row: 3;
+    }
+
+    .gridColSixRowOne {
+        -ms-grid-column: 3;
+        grid-column: 2;
+        -ms-grid-row: 5;
+        grid-row: 3;
+    }
+    /* GRID 위치 설정 */
+}
+
+@media screen and (max-width : 720px) {
+    /* GRID 위치 설정 */
+    .gridColOneRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 1;
+        grid-row: 1;
+    }
+
+    .gridColTwoRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 3;
+        grid-row: 2;
+    }
+
+    .gridColThreeRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 5;
+        grid-row: 3;
+    }
+
+    .gridColFourRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 7;
+        grid-row: 4;
+    }
+
+    .gridColFiveRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 9;
+        grid-row: 5;
+    }
+
+    .gridColSixRowOne {
+        -ms-grid-column: 1;
+        grid-column: 1;
+        -ms-grid-row: 11;
+        grid-row: 6;
+    }
+    /* GRID 위치 설정 */
 }

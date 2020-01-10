@@ -1,0 +1,143 @@
+.wrap {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    padding: 30px;
+    background: rgba(0,0,0,0.7);
+}
+
+.innerWrap {
+    width: 100%;
+    max-width: 800px;
+    margin:0 auto;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.03);
+    background-color: #FFF;
+}
+
+
+/* 제목 부분 START */
+.headLineWrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.gameTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.gameTimer {
+    font-size: 1.2rem;
+}
+
+.closeButton {
+    font-weight: bold;
+    font-size: 2rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/*  */
+.listSeachWrap {
+    display: flex;
+}
+
+.moreListButton {
+    margin-right: 5px;
+}
+
+.listSeachWrap > button {
+    box-sizing: border-box;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #636363;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* 제목 부분 END */
+
+/* TABLE START */
+.resultTable {
+    table-layout: fixed;
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem;
+    border-top: 1px solid #aaa;
+}
+
+/* 회차 제목 부분 */
+.tableCountHead {
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-right: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    vertical-align: middle;
+}
+
+/* 결과 제목 부분 */
+.tableResultHead {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #aaa;
+    vertical-align: middle;
+    background-color: #f7f7f7;
+}
+
+/* 결과 세부 항목 제목 부분 */
+.tableResultSubHead {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 1px solid #aaa;
+    background-color: #f7f7f7;
+    vertical-align: middle;
+}
+
+.tableResultSubHead:first-of-type {
+    border-right: 1px solid #aaa;
+}
+
+/* 테이블 내부 패딩 */
+.tableRows > td {
+    padding: 15px 0;
+}
+
+/* 테이블 내부 선 */
+.tableRows > td:first-of-type {
+    border-right: 1px solid #aaa;
+}
+.tableRows > td:last-of-type {
+    border-left: 1px solid #e8e8e8;
+}
+
+.tableRows:not(:last-of-type) > td {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+/* 회차 내용 부분 색 및 선 */
+.rowCount {
+    background-color: #f7f7f7;
+    font-weight: bold;
+}
+
+/* 일반볼 부분 내용 정렬 */
+.tableDataJustifyBetween {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* 일반볼 부분 크기 맞춤 */
+.lotteryDataSpan {
+    width: 100%;
+    text-align: center;
+}

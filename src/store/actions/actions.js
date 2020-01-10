@@ -7,6 +7,9 @@ export const WORLDBETTING3 = 'worldBall3';
 export const ZOMBIEDROP = 'zombieDrop';
 export const ZOMBIEBREAK = 'zombieBreak';
 export const RSP = 'rps';
+export const SETMAXROW = 'setMaxRow';
+export const TIMMER = 'TIMER';
+export const TICK = 'TICK';
 
 
 export function getStartDate(){
@@ -33,61 +36,14 @@ export function getResultData(apiKey, date = new Date().toISOString().slice(0,10
     }
 }
 
+export function setMaxRow(index) {
+    return {type: SETMAXROW, maxIndex: index};
+}
 
+export function setTimmer(counterObject) {
+    return {type: TIMMER, counterObject: counterObject};
+}
 
-
-// export const INCREMENT = 'INCREMENT';
-// export const DECREMENT = 'DECREMENT';
-// export const SET_DIFF = 'SET_DIFF';
-// export const POWERBALL = 'powerBall';
-// export const WORLDBALL5 = 'worldBall5';
-// export const WORLDBALL3 = 'worldBall3';
-// export const ZOMBIEDROP = 'zombieDrop';
-// export const ZOMBIEBREAK = 'zombieBreak';
-// export const RSP = 'rps';
-// export const STARTDATE = 'STARTDATE';
-
-// export function increment() {
-//     return {
-//         type: INCREMENT
-//     };
-// }
-
-// export function decrement() {
-//     return {
-//         type: DECREMENT
-//     };
-// }
-
-// export function setDiff(value) {
-//     return {
-//         type: SET_DIFF,
-//         diff: value
-//     };
-// }
-
-// export function responseGameResult(gameType) {
-//     return {
-//         type: gameType
-//     }
-// }
-
-// export function startDate(data) {
-//     return {
-//         type: STARTDATE,
-//         data
-//     }
-// }
-
-// export function getFirstTime() {
-//     return (dispatch) => {
-//         return PromiseModule.get(`/api/dateRange`)
-//             .then(response => {
-//                 console.log(response);
-//                 dispatch(startDate(response.data));
-//             })
-//             .catch(err => {
-//                 console.log(err);
-//             })
-//     }
-// }
+export function tick() {
+    return {type: TICK };
+}

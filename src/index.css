@@ -9,3 +9,15 @@ html, body {
 * {
     box-sizing: border-box;
 }
+
+@media screen and (max-width : 1080px) {
+    html, body {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width : 720px) {
+    html, body {
+        font-size: 8px;
+    }
+}

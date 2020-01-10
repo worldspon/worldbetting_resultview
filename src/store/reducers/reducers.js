@@ -1,4 +1,3 @@
-// import { INCREMENT, DECREMENT, SET_DIFF, STARTDATE } from '../actions/actions';
 import { combineReducers } from 'redux';
 import {
     STARTDATE,
@@ -7,16 +6,14 @@ import {
     WORLDBETTING3,
     ZOMBIEDROP,
     ZOMBIEBREAK,
-    RSP
+    RSP,
+    SETMAXROW,
+    TIMMER,
+    TICK
 } from '../actions/actions';
 
-const gameState = {
-    startDate : {},
-    powerBallResult: {},
-    worldBetting5Result: {}
-};
-
-function asyncData(state = gameState, action) {
+// 비동기 게임 결과 저장소
+function asyncData(state = {}, action) {
     switch(action.type) {
         case STARTDATE:
             return Object.assign({}, state, {
@@ -24,70 +21,60 @@ function asyncData(state = gameState, action) {
             });
         case POWERBALL:
             return Object.assign({}, state, {
-                powerBallResult: action.result
+                powerBall: action.result
             });
         case WORLDBETTING5:
             return Object.assign({}, state, {
-                worldBetting5Result: action.result
+                worldBall5: action.result
             });
-        // case WORLDBETTING3:
-        //     return null;
-        // case ZOMBIEDROP:
-        //     return null;
-        // case ZOMBIEBREAK:
-        //     return null;
-        // case RSP:
-        //     return null;
+        case WORLDBETTING3:
+            return Object.assign({}, state, {
+                worldBall3: action.result
+            });
+        case ZOMBIEDROP:
+            return Object.assign({}, state, {
+                zombieDrop: action.result
+            });
+        case ZOMBIEBREAK:
+            return Object.assign({}, state, {
+                zombieBreak: action.result
+            });
+        case RSP:
+            return Object.assign({}, state, {
+                rps: action.result
+            });
+        default:
+            return state;
+    }
+}
+
+// 화면 넓이에 따른 최대 ROW INDEX 저장소
+function maxRowData(state = {}, action) {
+    switch(action.type) {
+        case SETMAXROW:
+            return Object.assign({}, state, {
+                maxIndex: action.maxIndex
+            });
+        default:
+            return state;
+    }
+}
+
+
+// 시간 저장소
+function counter(state = {}, action) {
+    switch (action.type) {
+        case TIMMER:
+            return Object.assign({}, state, {
+                gameCounter: action.counterObject
+            });
         default:
             return state;
     }
 }
 
 export default combineReducers({
-    asyncData
+    asyncData,
+    maxRowData,
+    counter
 });
-
-// const asyncData = (state = gameState, action) => {
-//     switch(action.type) {
-//         case "STAERDATE":
-//             return Object.assign({}, state, {
-//                 startDate: action.startDate
-//             });
-//         default:
-//             return state;
-//     }
-// }
-
-
-// const counterInitialState = {
-//     value: 0,
-//     diff: 1
-// };
-
-
-// const counter = (state = counterInitialState, action) => {
-//     switch(action.type) {
-//         case INCREMENT:
-//             return Object.assign({}, state, {
-//                 value: state.value + state.diff
-//             });
-//         case DECREMENT:
-//             return Object.assign({}, state, {
-//                 value: state.value - state.diff
-//             });
-//         case SET_DIFF:
-//             return Object.assign({}, state, {
-//                 diff: action.diff
-//             });
-//         default:
-//             return state;
-//     }
-// };
-
-
-// const extra = (state = { value: 'this_is_extra_reducer' }, action) => {
-//     switch(action.type) {
-//         default:
-//             return state;
-//     }
-// }
