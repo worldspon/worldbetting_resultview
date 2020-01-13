@@ -42,7 +42,7 @@ function setWorldBetting3() {
 
 // 3분 게임
 function setZombieDrop() {
-    const remainTime = 180000 - Date.now() % 180000;
+    const remainTime = 180000 -Date.now() % 180000;
 
     return {
         zombieDrop: Math.floor(remainTime / 1000)

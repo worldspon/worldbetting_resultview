@@ -18,17 +18,15 @@ class App extends React.Component {
 
     setIntervalTick() {
         setInterval(() => {
-            console.log('interval');
-            this.props.tick();
+            this.props.tick(this.props.counter);
         }, 1000)
     }
 
     setTimeoutNextTick(milli) {
         setTimeout(() => {
-            console.log('time');
-            this.props.tick();
+            this.props.tick(this.props.counter);
             this.setIntervalTick();
-        }, milli)
+        }, 1000 + milli)
     }
 
     setGameCounter(timmerObject) {
@@ -161,7 +159,7 @@ const mapDispatchToProps = (dispatch) => {
         getStartDate: () => dispatch(getStartDate()),
         setMaxRow: (index) => dispatch(setMaxRow(index)),
         setTimmer: (counterObject) => dispatch(setTimmer(counterObject)),
-        tick
+        tick: (counterObject) => dispatch(tick(counterObject))
     };
 }
 

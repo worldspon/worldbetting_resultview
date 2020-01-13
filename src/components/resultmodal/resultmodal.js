@@ -48,6 +48,17 @@ class ResultModal extends React.Component {
         }
     }
 
+    changeCounterFormat() {
+        if(this.props.counter !== undefined) {
+            const remainTime = this.props.counter[this.state.apiKey];
+            const min = Math.floor(remainTime / 60);
+            const second = remainTime % 60;
+            return `0${min}분 ${second >= 10 ? second : '0'+second}초`;
+        } else {
+            return null;
+        }
+    }
+
     render() {
         return (
             <div className={styles.wrap}>
@@ -55,7 +66,7 @@ class ResultModal extends React.Component {
                     <div className={styles.headLineWrap}>
                         <div className={styles.titleWrap}>
                             <h1 className={styles.gameTitle}>{this.state.title}</h1>
-                            <span className={styles.gameTimer}>05:00</span>
+                            <span className={styles.gameTimer}>{this.changeCounterFormat()}</span>
                         </div>
                         <button
                             className={styles.closeButton}
@@ -89,6 +100,7 @@ class ResultModal extends React.Component {
 const mapStateToProps = (state) => {
     return {
         result : state.asyncData,
+        counter: state.counter.gameCounter
     };
 }
 

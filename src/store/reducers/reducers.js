@@ -77,6 +77,17 @@ function counter(state = commonCounter, action) {
             return Object.assign({}, state, {
                 gameCounter: action.counterObject
             });
+        case TICK:
+            return Object.assign({}, state, {
+                gameCounter: {
+                    powerBall: --action.counterObject.powerBall < 0 ? 299 : action.counterObject.powerBall,
+                    worldBall5: --action.counterObject.worldBall5 < 0 ? 299 : action.counterObject.worldBall5,
+                    worldBall3: --action.counterObject.worldBall3 < 0 ? 179 : action.counterObject.worldBall3,
+                    zombieDrop: --action.counterObject.zombieDrop < 0 ? 179 : action.counterObject.zombieDrop,
+                    zombieBreak: --action.counterObject.zombieBreak < 0 ? 179 : action.counterObject.zombieBreak,
+                    rps: --action.counterObject.rps < 0 ? 119 : action.counterObject.rps
+                }
+            });
         default:
             return state;
     }

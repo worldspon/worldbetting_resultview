@@ -17,7 +17,7 @@ class ResultBox extends React.Component {
         ) {
             return this.props.result[this.props.apiKey].map((rows, index) => {
                 return (
-                index <= this.props.maxIndex && <tr key={index} className={styles.tableRows}>
+                index < this.props.maxIndex && <tr key={index} className={styles.tableRows}>
                     <td className={styles.rowCount}>{rows.gameCount}</td>
                     <td colSpan={this.props.colSpan - 1}>
                         <div className={styles.tableDataJustifyBetween}>
@@ -32,7 +32,7 @@ class ResultBox extends React.Component {
         } else {
             return this.props.result[this.props.apiKey].map((rows, index) => {
                 return (
-                index <= this.props.maxIndex && <tr key={index} className={styles.tableRows}>
+                index < this.props.maxIndex && <tr key={index} className={styles.tableRows}>
                     <td className={styles.rowCount}>{rows.gameCount}</td>
                     <td colSpan={this.props.colSpan - 1}>
                     {rows.result.left}
@@ -72,15 +72,22 @@ class ResultBox extends React.Component {
     }
 
     changeCounterFormat() {
-        // const remainTime = this.props.counter[this.props.apiKey];
-        // const min = Math.floor(remainTime / 60);
-        // const second = remainTime % 60
-        // return `0${min}분 ${second > 10 ? second : '0'+second}초`;
-        // return null;
+        if(this.props.counter !== undefined) {
+            const remainTime = this.props.counter[this.props.apiKey];
+            if(remainTime === 0) {
+                setTimeout(() => {
+                    this.props.getResultData(this.props.apiKey);
+                },15000)
+            }
+            const min = Math.floor(remainTime / 60);
+            const second = remainTime % 60;
+            return `0${min}분 ${second >= 10 ? second : '0'+second}초`;
+        } else {
+            return null;
+        }
     }
 
     componentDidMount() {
-        console.log(this.props.counter);
         this.props.getResultData(this.props.apiKey);
     }
     render() {
