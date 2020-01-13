@@ -7,7 +7,6 @@ import './reset.css';
 import './index.css';
 
 
-
 const appRoot = document.getElementById('root');
 
 // 화면 배경색

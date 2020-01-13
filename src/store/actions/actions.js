@@ -41,9 +41,11 @@ export function setMaxRow(index) {
 }
 
 export function setTimmer(counterObject) {
+    console.log(counterObject);
     return {type: TIMMER, counterObject: counterObject};
 }
 
 export function tick() {
+    console.log('call tick');
     return {type: TICK };
 }

@@ -60,9 +60,18 @@ function maxRowData(state = {}, action) {
     }
 }
 
+const commonCounter = {
+    powerBall: 0,
+    worldBall5: 0,
+    worldBall3: 0,
+    zombieDrop: 0,
+    zombieBreak: 0,
+    rps: 0
+}
+
 
 // 시간 저장소
-function counter(state = {}, action) {
+function counter(state = commonCounter, action) {
     switch (action.type) {
         case TIMMER:
             return Object.assign({}, state, {

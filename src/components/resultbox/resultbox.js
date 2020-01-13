@@ -71,7 +71,16 @@ class ResultBox extends React.Component {
         }
     }
 
+    changeCounterFormat() {
+        // const remainTime = this.props.counter[this.props.apiKey];
+        // const min = Math.floor(remainTime / 60);
+        // const second = remainTime % 60
+        // return `0${min}분 ${second > 10 ? second : '0'+second}초`;
+        // return null;
+    }
+
     componentDidMount() {
+        console.log(this.props.counter);
         this.props.getResultData(this.props.apiKey);
     }
     render() {
@@ -80,7 +89,7 @@ class ResultBox extends React.Component {
                 <div className={styles.headLineWrap}>
                     <div className={styles.titleWrap}>
                         <h1 className={styles.gameTitle}>{this.props.title}</h1>
-                        <span className={styles.gameTimer}>05:00</span>
+                        <span className={styles.gameTimer}>{this.changeCounterFormat()}</span>
                     </div>
                     <div className={styles.listSeachWrap}>
                         {this.props.maxIndex !== Infinity && <button className={styles.moreListButton} onClick={() => {this.props.showModal(this.createModalObject())}}>더보기</button>}
@@ -108,7 +117,6 @@ class ResultBox extends React.Component {
         );
     }
 }
-
 
 const mapStateToProps = (state) => {
     return {

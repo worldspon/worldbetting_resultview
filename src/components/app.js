@@ -1,8 +1,9 @@
 import React from 'react';
 import ResultBox from './resultbox/resultbox';
 import ResultModal from './resultmodal/resultmodal';
+import calcTimmer from '../config/calctimmer';
 import { connect } from 'react-redux';
-import { getStartDate, setMaxRow, setTimmer } from '../store/actions/actions';
+import { getStartDate, setMaxRow, setTimmer, tick } from '../store/actions/actions';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -13,6 +14,25 @@ class App extends React.Component {
             maxRow: window.innerWidth >= 1600 ? Infinity : 10,
             modalObject: null
         }
+    }
+
+    setIntervalTick() {
+        setInterval(() => {
+            console.log('interval');
+            this.props.tick();
+        }, 1000)
+    }
+
+    setTimeoutNextTick(milli) {
+        setTimeout(() => {
+            console.log('time');
+            this.props.tick();
+            this.setIntervalTick();
+        }, milli)
+    }
+
+    setGameCounter(timmerObject) {
+        this.setTimeoutNextTick(timmerObject.nextTick);
     }
 
     bindResizeEvent() {
@@ -33,6 +53,7 @@ class App extends React.Component {
         }
     }
 
+    // 모달 생성
     showModal(modalObject) {
         this.setState({
             showModal: true,
@@ -40,6 +61,7 @@ class App extends React.Component {
         });
     }
 
+    // 모달 해제
     destroyModal() {
         this.setState({
             showModal: false,
@@ -48,6 +70,10 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        const timmerObject = calcTimmer();
+        this.setGameCounter(timmerObject);
+        delete timmerObject.nextTick;
+        this.props.setTimmer(timmerObject);
 
         // 각 게임 시작일 가져오는 통신
         this.props.getStartDate();
@@ -125,7 +151,8 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        result : state.asyncData
+        result : state.asyncData,
+        counter: state.counter.gameCounter
     };
 }
 
@@ -133,7 +160,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getStartDate: () => dispatch(getStartDate()),
         setMaxRow: (index) => dispatch(setMaxRow(index)),
-        setTimmer: (counterObject) => dispatch(setTimmer(counterObject))
+        setTimmer: (counterObject) => dispatch(setTimmer(counterObject)),
+        tick
     };
 }
 
