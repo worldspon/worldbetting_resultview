@@ -10,6 +10,7 @@ export const RSP = 'rps';
 export const SETMAXROW = 'setMaxRow';
 export const TIMMER = 'TIMER';
 export const TICK = 'TICK';
+export const LANG = 'LANG';
 
 
 export function getStartDate(){
@@ -46,4 +47,8 @@ export function setTimmer(counterObject) {
 
 export function tick(counterObject) {
     return {type: TICK, counterObject: counterObject};
+}
+
+export function changeLang(lang) {
+    return {type: LANG, lang: lang};
 }

@@ -11,6 +11,22 @@
     column-gap: 20px;
 }
 
+.nationalFlag {
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    height: 20px;
+}
+
+.flagImage {
+    width: 20px;
+    cursor: pointer;
+}
+
+.flagImage:not(:last-of-type) {
+    margin-right: 10px;
+}
+
 @media screen and (max-width : 1600px) {
     .wrap {
         -ms-grid-columns: 1fr 20px 1fr 20px 1fr;

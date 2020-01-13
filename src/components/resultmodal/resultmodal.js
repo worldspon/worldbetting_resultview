@@ -39,10 +39,20 @@ class ResultModal extends React.Component {
                 return (
                 <tr key={index} className={styles.tableRows}>
                     <td className={styles.rowCount}>{rows.gameCount}</td>
-                    <td colSpan={`${this.state.colSpan - 1}`}>
-                    {rows.result.left}
+                    <td colSpan={this.props.colSpan - 1}>
+                    {
+                        this.state.apiKey === 'rps' ?
+                        this.props.langPack ?
+                        this.props.langPack.rsp[rows.result.left-1]: '' : rows.result.left
+                    }
                     </td>
-                    <td>{rows.result.right}</td>
+                    <td>
+                    {
+                        this.state.apiKey === 'rps' ?
+                        this.props.langPack ?
+                        this.props.langPack.rsp[rows.result.right-1]: '' : rows.result.right
+                    }
+                    </td>
                 </tr>);
             })
         }
@@ -53,7 +63,7 @@ class ResultModal extends React.Component {
             const remainTime = this.props.counter[this.state.apiKey];
             const min = Math.floor(remainTime / 60);
             const second = remainTime % 60;
-            return `0${min}분 ${second >= 10 ? second : '0'+second}초`;
+            return `0${min}:${second >= 10 ? second : '0'+second}`;
         } else {
             return null;
         }
@@ -77,8 +87,8 @@ class ResultModal extends React.Component {
                         <table className={styles.resultTable}>
                             <thead>
                                 <tr>
-                                    <th rowSpan='2' className={styles.tableCountHead}>회차</th>
-                                    <th colSpan={`${this.state.colSpan}`} className={styles.tableResultHead}>결과</th>
+                                    <th rowSpan='2' className={styles.tableCountHead}>{this.props.langPack && this.props.langPack.round}</th>
+                                    <th colSpan={`${this.state.colSpan}`} className={styles.tableResultHead}>{this.props.langPack && this.props.langPack.result}</th>
                                 </tr>
                                 <tr>
                                     <th colSpan={`${this.state.colSpan-1}`} className={styles.tableResultSubHead}>{this.state.tableHead[0]}</th>
@@ -100,7 +110,8 @@ class ResultModal extends React.Component {
 const mapStateToProps = (state) => {
     return {
         result : state.asyncData,
-        counter: state.counter.gameCounter
+        counter: state.counter.gameCounter,
+        langPack: state.langStore.langPack
     };
 }
 

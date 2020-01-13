@@ -9,7 +9,8 @@ import {
     RSP,
     SETMAXROW,
     TIMMER,
-    TICK
+    TICK,
+    LANG
 } from '../actions/actions';
 
 // 비동기 게임 결과 저장소
@@ -93,8 +94,20 @@ function counter(state = commonCounter, action) {
     }
 }
 
+function langStore(state = {}, action) {
+    switch (action.type) {
+        case LANG:
+            return Object.assign({}, state, {
+                langPack: action.lang
+            });
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     asyncData,
     maxRowData,
-    counter
+    counter,
+    langStore
 });

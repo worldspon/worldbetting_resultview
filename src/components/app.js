@@ -2,8 +2,9 @@ import React from 'react';
 import ResultBox from './resultbox/resultbox';
 import ResultModal from './resultmodal/resultmodal';
 import calcTimmer from '../config/calctimmer';
+import LanguagePack from '../config/languagepack';
 import { connect } from 'react-redux';
-import { getStartDate, setMaxRow, setTimmer, tick } from '../store/actions/actions';
+import { getStartDate, setMaxRow, setTimmer, tick, changeLang } from '../store/actions/actions';
 import styles from './app.css';
 
 class App extends React.Component {
@@ -67,7 +68,17 @@ class App extends React.Component {
         });
     }
 
+    changeLang(lang) {
+        this.props.changeLang(LanguagePack[lang]);
+    }
+
+    showAlert() {
+        alert('준비중입니다!');
+    }
+
     componentDidMount() {
+        this.props.changeLang(LanguagePack.ko);
+        console.log(this.props)
         const timmerObject = calcTimmer();
         this.setGameCounter(timmerObject);
         delete timmerObject.nextTick;
@@ -88,58 +99,80 @@ class App extends React.Component {
     render() {
         return (
             <div className={styles.wrap}>
+                <div className={styles.nationalFlag}>
+                    <img
+                        src={require('../assets/images/ko_flag.png')}
+                        className={styles.flagImage}
+                        onClick={()=>this.changeLang('ko')}
+                    />
+                    <img
+                        src={require('../assets/images/uk_flag.png')}
+                        className={styles.flagImage}
+                        onClick={()=>this.changeLang('uk')}
+                    />
+                    <img
+                        src={require('../assets/images/ch_flag.png')}
+                        className={styles.flagImage}
+                        onClick={() => this.showAlert()}
+                    />
+                    <img
+                        src={require('../assets/images/jp_flag.png')}
+                        className={styles.flagImage}
+                        onClick={() => this.showAlert()}
+                    />
+                </div>
                 {this.state.showModal &&
                 <ResultModal
                     modalObject={this.state.modalObject}
                     destroyModal={() => this.destroyModal()}
                 />}
                 <ResultBox
-                    title='PowerBall'
+                    title={this.props.langPack && this.props.langPack.title[0]}
                     // 결과 colum의 사이즈 설정을 위한 props
                     colSpan={3}
                     // startDate={this.props.gameInfo.startDate.pb}
                     apiKey='powerBall'
-                    tableHead={['일반볼', '파워볼']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[0]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
                 <ResultBox
-                    title='World Betting 5'
+                    title={this.props.langPack && this.props.langPack.title[1]}
                     colSpan={3}
                     // startDate={this.props.gameInfo.startDate.wb5}
                     apiKey='worldBall5'
-                    tableHead={['일반볼', '파워볼']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[1]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
                 <ResultBox
-                    title='World Betting 3'
+                    title={this.props.langPack && this.props.langPack.title[2]}
                     colSpan={3}
                     // startDate={this.props.gameInfo.startDate.wb3}
                     apiKey='worldBall3'
-                    tableHead={['일반볼', '파워볼']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[1]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
                 <ResultBox
-                    title='Zombie Drop'
+                    title={this.props.langPack && this.props.langPack.title[3]}
                     colSpan={3}
                     // startDate={this.props.gameInfo.startDate.zd}
                     apiKey='zombieDrop'
-                    tableHead={['일반볼', '좀비볼']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[1]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
                 <ResultBox
-                    title='Zombie Break'
+                    title={this.props.langPack && this.props.langPack.title[4]}
                     colSpan={2}
                     // startDate={this.props.gameInfo.startDate.zb}
                     apiKey='zombieBreak'
-                    tableHead={['왼쪽', '오른쪽']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[2]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
                 <ResultBox
-                    title='RSP'
+                    title={this.props.langPack && this.props.langPack.title[5]}
                     colSpan={2}
                     // startDate={this.props.gameInfo.startDate.rps}
                     apiKey='rps'
-                    tableHead={['왼쪽', '오른쪽']}
+                    tableHead={this.props.langPack && this.props.langPack.resultMenu[2]}
                     showModal={(modalObject) => this.showModal(modalObject)}
                 />
             </div>
@@ -150,7 +183,8 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
     return {
         result : state.asyncData,
-        counter: state.counter.gameCounter
+        counter: state.counter.gameCounter,
+        langPack: state.langStore.langPack
     };
 }
 
@@ -159,7 +193,8 @@ const mapDispatchToProps = (dispatch) => {
         getStartDate: () => dispatch(getStartDate()),
         setMaxRow: (index) => dispatch(setMaxRow(index)),
         setTimmer: (counterObject) => dispatch(setTimmer(counterObject)),
-        tick: (counterObject) => dispatch(tick(counterObject))
+        tick: (counterObject) => dispatch(tick(counterObject)),
+        changeLang: (lang) => dispatch(changeLang(lang))
     };
 }
 
